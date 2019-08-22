@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_left_coin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="16dp"
+            android:textColor="#333333"
+            android:text="BTC" />
+
+        <TextView
+            android:id="@+id/tv_right_coin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_alignBottom="@+id/tv_left_coin"
+            android:layout_toRightOf="@+id/tv_left_coin"
+            android:textSize="12dp"
+            android:textColor="#999999"
+            android:text="/USDT" />
+
+        <TextView
+            android:id="@+id/tv_day_amount_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/tv_left_coin"
+            android:textSize="13dp"
+            android:textColor="#666666"
+            android:text="24H量" />
+
+        <TextView
+            android:id="@+id/tv_day_amount_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_below="@+id/tv_left_coin"
+            android:layout_toRightOf="@id/tv_day_amount_title"
+            android:textSize="13dp"
+            android:textColor="#666666"
+            android:text="337768" />
+
+        <View
+            android:id="@+id/v_center_placeholder"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30dp"
+            android:layout_alignLeft="@+id/v_center_placeholder"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/tv_close_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:text="2.7429" />
+
+            <TextView
+                android:id="@+id/tv_close_cny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:textColor="#666666"
+                android:text="¥19.37" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:background="@drawable/shape_bg_corner_red"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:text="-1.73%" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/tv_day_amount_title"
+            android:background="#d9d9d9"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+</layout>
