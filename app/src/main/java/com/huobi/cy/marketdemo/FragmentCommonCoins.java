@@ -137,6 +137,7 @@ public class FragmentCommonCoins extends Fragment {
                 String symbol = jsonObject.getString("symbol");
                 if(!TextUtils.isEmpty(symbol)) {
                     TickerBean tickerBean = symbolMap.get(symbol);
+                    if(tickerBean == null) return;
                     JSONObject tick = jsonObject.getJSONObject("tick");
                     tickerBean.setOpen(tick.getDouble("open"));
                     tickerBean.setClose(tick.getDouble("close"));
