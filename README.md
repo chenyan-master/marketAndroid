@@ -2,5 +2,5 @@
 android版本的huobi行情
 
 ###运行效果图
-![avatar](https://github.com/chenyan-github/marketAndroid/blob/master/WechatIMG2.jpeg){:height="180" width="320"}
-![avatar](https://github.com/chenyan-github/marketAndroid/blob/master/WechatIMG1.jpeg){:height="180" width="320"}
+<img src="https://github.com/chenyan-github/marketAndroid/blob/master/WechatIMG2.jpeg" width = "180" height = "320"/>
+<img src="https://github.com/chenyan-github/marketAndroid/blob/master/WechatIMG1.jpeg" width = "180" height = "320"/>
