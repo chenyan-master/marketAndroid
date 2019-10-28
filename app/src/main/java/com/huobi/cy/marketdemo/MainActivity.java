@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject object = new JSONObject(result);
                         if("ok".equals(object.getString("status"))) {
                             JSONArray data = object.getJSONArray("data");
-                            getSP().edit().putString("getAllSymbols", result);
+                            getSP().edit().putString("getAllSymbols", result).commit();
                             if(!finalHasInit) {
                                 EventBus.getDefault().postSticky(new EventBusMessage(EventBusMessage.EVENT_GET_SYMBOLS, data));
                             }
