@@ -2,6 +2,7 @@ package com.huobi.cy.marketdemo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
@@ -140,10 +141,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        connectWebSocket();
         loadingProgress = new ProgressDialog(this);
-        loadingProgress.setMessage("loading...");
-        loadingProgress.show();
+        connectWebSocket();
+        String getAllSymbols = getSP().getString("getAllSymbols", null);
+        boolean hasInit = false;
+        if(!TextUtils.isEmpty(getAllSymbols)) {
+            try {
+                JSONObject object = new JSONObject(getAllSymbols);
+                if("ok".equals(object.getString("status"))) {
+                    JSONArray data = object.getJSONArray("data");
+                    hasInit = true;
+                    EventBus.getDefault().postSticky(new EventBusMessage(EventBusMessage.EVENT_GET_SYMBOLS, data));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            loadingProgress.setMessage("loading...");
+            loadingProgress.show();
+        }
+        final boolean finalHasInit = hasInit;
         WebSocketManager.getInstance().getAllSymbols(new WebSocketManager.OnCallbackListener() {
             @Override
             public void onSuccess(String result) {
@@ -153,7 +170,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject object = new JSONObject(result);
                         if("ok".equals(object.getString("status"))) {
                             JSONArray data = object.getJSONArray("data");
-                            EventBus.getDefault().postSticky(new EventBusMessage(EventBusMessage.EVENT_GET_SYMBOLS, data));
+                            getSP().edit().putString("getAllSymbols", result);
+                            if(!finalHasInit) {
+                                EventBus.getDefault().postSticky(new EventBusMessage(EventBusMessage.EVENT_GET_SYMBOLS, data));
+                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -187,5 +207,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         WebSocketManager.getInstance().disconnectSocket();
+    }
+
+    public SharedPreferences getSP() {
+        return this.getSharedPreferences(this.getPackageName(), MODE_PRIVATE);
     }
 }
